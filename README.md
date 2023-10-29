@@ -67,25 +67,37 @@ A Component is a combination of data html template and logics, the component rep
 * ngAfterViewInit (AfterViewInit interface) loaded after the constructor the view initialize 
 
 # Data Binding 
-* String Interpotalion = {{}}
-* Sharing Data Between Components :
-    * Parent-Child Relationship :
-        1- Parent to Child Component => @Input
-            ----------------------------------------------------------------------------------------
-            @Input() ChildVariable!:type ###Child Side
-            <childSelector [ChildVariable]='ParentVariable'></childSelector> ###Parent Html Side
-            ----------------------------------------------------------------------------------------
-        2- Child to Parent Component => @ViewChild || @Output & EventEmitter 
-            ----------------------------------------------------------------------------------------
-            @ViewChild(ChildClassName)Variable:type ###Parent Side
-            ngAfterViewInit(){res = this.Variable.ChildVarName;} ### Parent Side
-            ----------------------------------------------------------------------------------------
-            ### @Output and EventEmitter : ideal to share data that occur on button click, 
-            form entries, and user events or actions
-            ########################################################################################
-            @Output() EventName = new EventEmitter<type>(); ###Child Side
-            <button (click)='sendMethodName()'>Click</button> ###Child Html Side
-            sendMethodName(){ this.EventName.emit(this.VarToEmit) } ###Child Side
-            <childSelector (EventName)='recieveMethodName($event)'></childSelector> ###Parent Html Side
-            recieveMethodName($event: type){this.ParVar = $event} ###Parent Side
-            ----------------------------------------------------------------------------------------
+* String Interpotalion = {{title}} : show dynamic data in the view
+* Property Binding = [propertyName]='propertyValue' 
+* Class Binding = [class.cssMethodName]='condition' ###Html Side
+* Style Binding = [style.color] = "bool? 'red' : 'blue'"
+* Event Binding = (eventName) = 'MethodName()'
+* Event Filtering = (keyup.enter)='MethodName()'
+* Template Variable = (keyup.enter)="MethodName(variableName.value)" #variableName
+* Two Way Data Binding (from FormsModule) = [(ngModel)]="variableName"
+------------------------------------------------
+one Way Data Binding : Component ===> View(HTML) 
+Two Way Data Binding : Component <==> View(HTML)
+------------------------------------------------
+ 
+# Sharing Data Between Components 
+* Parent-Child Relationship 
+1- Parent to Child Component => @Input
+    ----------------------------------------------------------------------------------------
+    @Input() ChildVariable!:type ###Child Side
+    <childSelector [ChildVariable]='ParentVariable'></childSelector> ###Parent Html Side
+    ----------------------------------------------------------------------------------------
+2- Child to Parent Component => @ViewChild || @Output & EventEmitter 
+    ----------------------------------------------------------------------------------------
+    @ViewChild(ChildClassName)Variable:type ###Parent Side
+    ngAfterViewInit(){res = this.Variable.ChildVarName;} ### Parent Side
+    ----------------------------------------------------------------------------------------
+    ### @Output and EventEmitter : ideal to share data that occur on button click, 
+    form entries, and user events or actions
+    ########################################################################################
+    @Output() EventName = new EventEmitter<type>(); ###Child Side
+    <button (click)='sendMethodName()'>Click</button> ###Child Html Side
+    sendMethodName(){ this.EventName.emit(this.VarToEmit) } ###Child Side
+    <childSelector (EventName)='recieveMethodName($event)'></childSelector> ###Parent Html Side
+    recieveMethodName($event: type){this.ParVar = $event} ###Parent Side
+    ----------------------------------------------------------------------------------------
