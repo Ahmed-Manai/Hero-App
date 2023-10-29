@@ -1,2 +1,9 @@
 <h1> app component </h1>
+
+
 <app-nav></app-nav>
+<app-post [fromParent] = 'parentMessage'  (messageEvent) = 'receiveMessage($event)'></app-post>
+
+<p> {{messageFromChild}}</p>
+
+<p>{{messageFromChildOutput}}</p>

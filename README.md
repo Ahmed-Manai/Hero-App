@@ -62,4 +62,30 @@ src/app folder:
 Angular framework is component based fontend framework (Component are main building block of an angular app)
 A Component is a combination of data html template and logics, the component represent an area of view inside the browser (load inside the browser).
 
-# 
+# CallBack lifecyle hooks
+* ngOnInit (OnInit interface) : invoque after the component initialized inside the DOM (fully loaded inside the browser) 
+* ngAfterViewInit (AfterViewInit interface) loaded after the constructor the view initialize 
+
+# Data Binding 
+* String Interpotalion = {{}}
+* Sharing Data Between Components :
+    * Parent-Child Relationship :
+        1- Parent to Child Component => @Input
+            ----------------------------------------------------------------------------------------
+            @Input() ChildVariable!:type ###Child Side
+            <childSelector [ChildVariable]='ParentVariable'></childSelector> ###Parent Html Side
+            ----------------------------------------------------------------------------------------
+        2- Child to Parent Component => @ViewChild || @Output & EventEmitter 
+            ----------------------------------------------------------------------------------------
+            @ViewChild(ChildClassName)Variable:type ###Parent Side
+            ngAfterViewInit(){res = this.Variable.ChildVarName;} ### Parent Side
+            ----------------------------------------------------------------------------------------
+            ### @Output and EventEmitter : ideal to share data that occur on button click, 
+            form entries, and user events or actions
+            ########################################################################################
+            @Output() EventName = new EventEmitter<type>(); ###Child Side
+            <button (click)='sendMethodName()'>Click</button> ###Child Html Side
+            sendMethodName(){ this.EventName.emit(this.VarToEmit) } ###Child Side
+            <childSelector (EventName)='recieveMethodName($event)'></childSelector> ###Parent Html Side
+            recieveMethodName($event: type){this.ParVar = $event} ###Parent Side
+            ----------------------------------------------------------------------------------------
