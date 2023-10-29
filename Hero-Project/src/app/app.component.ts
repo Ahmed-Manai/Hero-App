@@ -6,7 +6,11 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Hero-Project';
-
+  
+  postTitle!:string;
+  postDetails!:string;
+  imageURL!:string;
+  postURL!:string;
+  addBackground!:boolean;
 }
 

@@ -1,3 +1,17 @@
 .text-red{
     color:red;
 }
+.form-area{
+    margin-top: 50px;
+    text-align: center;
+}
+.preview-area{
+
+  margin-top: 50px;
+  text-align: center;   
+}
+
+.add-background{
+    background-color: yellow;
+    padding: 10px;
+}

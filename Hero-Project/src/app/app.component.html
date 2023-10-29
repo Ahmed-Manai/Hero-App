@@ -1,1 +1,22 @@
-<h1> app component </h1>
+<div class="form-area">
+    <h1> Post Form </h1>
+    <input type="text" placeholder="Post Title" [(ngModel)]="postTitle">
+    <br><br>
+    <textarea cols="30" rows="10" placeholder="Post Details" [(ngModel)]="postDetails"></textarea>
+    <br><br>
+    <input type="text" placeholder="Post Image URL" [(ngModel)]="imageURL">
+    <br><br>
+    <input type="text" placeholder="Post URL" [(ngModel)]="postURL">
+    <br><br>
+    <input type="checkbox" [(ngModel)]="addBackground">Add Background
+    <br><br>
+</div>
+
+<div class="preview-area">
+    <img [src]="imageURL" alt="">
+    <h1> <span [class.add-background]="addBackground" >{{ postTitle }}</span> </h1>
+    <p> {{ postDetails }} </p>
+    <a [href]="postURL" target="_blank" [style.display]="postURL ? 'block' : 'none'"> More Details </a>
+</div>
+
+<!-- <app-post-form></app-post-form> -->
