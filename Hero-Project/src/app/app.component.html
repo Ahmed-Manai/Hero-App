@@ -1,22 +1,15 @@
-<div class="form-area">
-    <h1> Post Form </h1>
-    <input type="text" placeholder="Post Title" [(ngModel)]="postTitle">
-    <br><br>
-    <textarea cols="30" rows="10" placeholder="Post Details" [(ngModel)]="postDetails"></textarea>
-    <br><br>
-    <input type="text" placeholder="Post Image URL" [(ngModel)]="imageURL">
-    <br><br>
-    <input type="text" placeholder="Post URL" [(ngModel)]="postURL">
-    <br><br>
-    <input type="checkbox" [(ngModel)]="addBackground">Add Background
-    <br><br>
-</div>
-
-<div class="preview-area">
-    <img [src]="imageURL" alt="">
-    <h1> <span [class.add-background]="addBackground" >{{ postTitle }}</span> </h1>
-    <p> {{ postDetails }} </p>
-    <a [href]="postURL" target="_blank" [style.display]="postURL ? 'block' : 'none'"> More Details </a>
-</div>
-
-<!-- <app-post-form></app-post-form> -->
+<p>Fetching Object Array</p>
+<button (click)="addNew()">Add New Data </button>
+<div *ngIf="objectArray.length > 0; then postList else noData"></div>
+<ng-template #postList>
+    <ul>
+        <li *ngFor="let post of objectArray; let i = index">{{post.postTitle}}
+            <button (click)="OnDelete(i)">Delete</button>
+        </li>
+    </ul>
+</ng-template>
+<ng-template #noData>
+    <div>
+        <p> There is no data to fetch ...</p>
+    </div>
+</ng-template>

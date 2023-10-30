@@ -101,3 +101,29 @@ Two Way Data Binding : Component <==> View(HTML)
     <childSelector (EventName)='recieveMethodName($event)'></childSelector> ###Parent Html Side
     recieveMethodName($event: type){this.ParVar = $event} ###Parent Side
     ----------------------------------------------------------------------------------------
+
+# Angular Directive 
+    * Is used to manipulate the DOM object.
+    * Add and Remove html elements from the DOM dynamically.
+    * Directive are Components Without a View.
+    * Angular Components are Directives, With a View.
+# Types of Angular Directive 
+    1- Component Directive : is angular directive with a template view.
+    2- Structural Directive : can change the DOM layout by adding and removing DOM elements.
+        => ngFor Dir
+        => ngIf Dir
+        => ngTemplate Dir (;then VarNameTrue else VarNameFalse | <ng-template #VarNameTrue> <ng-template #VarNameFalse>)
+        => ngSwitchCase Dir
+    3- Attribute Directive : can change the apperance or behavior of an element, component, or another directive.
+    4- Custom Directive : can crate our custom directive from scratch.
+
+## ngIf Dir
+## ngTemplate Dir
+## ngSwitchCase Dir
+## ngFor Dir
+
+# ngClass Dir
+# ngStyle Dir
+
+# Structural Dir
+# Attribute Dir
