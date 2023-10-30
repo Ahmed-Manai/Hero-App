@@ -5,6 +5,10 @@
     margin-top: 50px;
     text-align: center;
 }
+.table-area{
+    position: absolute;
+    left: 30%;
+}
 .preview-area{
 
   margin-top: 50px;
@@ -21,4 +25,8 @@
 }
 .text-weight{
     font-weight: bold;
+}
+
+h4{
+    text-align:center;
 }
