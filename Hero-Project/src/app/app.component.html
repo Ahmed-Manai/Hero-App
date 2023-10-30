@@ -1,3 +1,4 @@
+<h1>ngFor, ngIf, ng-template Directives</h1>
 <p>Fetching Object Array</p>
 <button (click)="addNew()">Add New Data </button>
 <div *ngIf="objectArray.length > 0; then postList else noData"></div>
@@ -13,3 +14,41 @@
         <p> There is no data to fetch ...</p>
     </div>
 </ng-template>
+
+
+
+<h1>Switch-case Directive</h1>
+
+<div>
+    <button (click)="onClick('step 1')">Step 1</button>
+    <button (click)="onClick('step 2')">Step 2</button>
+    <button (click)="onClick('step 3')">Step 3</button>
+</div>
+<div [ngSwitch]="stepForm">
+    <div *ngSwitchCase="'step 1'">Step 1 Form</div>
+    <div *ngSwitchCase="'step 2'">Step 2 Form</div>
+    <div *ngSwitchCase="'step 3'">Step 3 Form</div>
+    <div *ngSwitchDefault>Something Else</div>
+</div>
+
+<h1>ngStyle Directive</h1>
+<h3 [style.color]="isActive ? 'red' : 'blue'" [style.textTransform]="isActive ? 'uppercase' : 'lowercase'">
+    Angular Message
+</h3>
+<h3 [ngStyle]="{
+        color: isActive ? 'red' : 'blue',
+        textTransform: isActive ? 'uppercase' : 'lowercase'
+    }">
+    Angular Message 2
+</h3>
+
+<h1>ngClass Directive</h1>
+<h3 [class.main]="isActive" [class.text-weight]="isActive">
+    Angular Message
+</h3>
+<h3 [ngClass]="{
+    'main' : isActive,
+    'text-weight' : isActive
+}">
+    Angular Message 2
+</h3>

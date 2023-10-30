@@ -6,8 +6,11 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
-  postArray: Array<string> = ['Post 1', 'Post 2', 'Post 3', 'Post 4', 'Post 5']
+
+  constructor(){
+
+  }
+
   objectArray: Array<any> = [
     {id: 1, postTitle: 'Post 1'},
     {id: 2, postTitle: 'Post 2'},
@@ -16,8 +19,10 @@ export class AppComponent {
     {id: 5, postTitle: 'Post 5'},
   ];
 
-  constructor(){
+  stepForm:string = "Something Else";
 
+  onClick(status: any){
+    this.stepForm = status;
   }
 
   addNew(){
@@ -27,5 +32,6 @@ export class AppComponent {
   OnDelete(index: any){
     this.objectArray.splice(index, 1);
   }
+  isActive: boolean = true;
 }
 

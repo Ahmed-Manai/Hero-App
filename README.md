@@ -109,21 +109,23 @@ Two Way Data Binding : Component <==> View(HTML)
     * Angular Components are Directives, With a View.
 # Types of Angular Directive 
     1- Component Directive : is angular directive with a template view.
-    2- Structural Directive : can change the DOM layout by adding and removing DOM elements.
+    2- Structural Directive : can change the DOM layout by adding and removing DOM elements.(Leading with * Symbol)
         => ngFor Dir
         => ngIf Dir
         => ngTemplate Dir (;then VarNameTrue else VarNameFalse | <ng-template #VarNameTrue> <ng-template #VarNameFalse>)
-        => ngSwitchCase Dir
+        => ngSwitchCase Dir ([ngSwitch]="VarValue" | *ngSwitchCase = "'ValueN'")
     3- Attribute Directive : can change the apperance or behavior of an element, component, or another directive.
+        => ngStyle Dir
+         [ngStyle] = "{
+        color: isActive ? 'red' : 'blue',
+        textTransform: isActive ? 'uppercase' : 'lowercase'
+    }"
+        => ngClass Dir
+        [ngClass]="{
+    'main' : isActive,
+    'text-weight' : isActive
+}"
     4- Custom Directive : can crate our custom directive from scratch.
 
-## ngIf Dir
-## ngTemplate Dir
-## ngSwitchCase Dir
-## ngFor Dir
 
-# ngClass Dir
-# ngStyle Dir
 
-# Structural Dir
-# Attribute Dir
