@@ -127,5 +127,46 @@ Two Way Data Binding : Component <==> View(HTML)
 }"
     4- Custom Directive : can crate our custom directive from scratch.
 
+***************************
 
+# Pipe 
+used to transforming data into a particular format (only need that dat transformed in a template or the HTML View)
+# inbuilt Pipe
+1. Uppercase Pipe 
+<h1>{{title | uppercase}}</h1>
+2. Lowercase Pipe
+<h1>{{title | lowercase}}</h1>
+3. Decimal /Number Pipe
+<h1>{{count | number}}</h1>
+<h1>{{dcValue | number: '1.2-2'}}</h1>
+4. Currency Pipe
+<h1>{{ price | currency:'JPY' : false : '2.1-1' }}</h1>
+5. Date Pipe
+<h1>{{ today | date: 'short'}}</h1>
+<h1>{{ today | date: 'shortDate'}}</h1>
+6. JSON Pipe
+<h1>{{ postObj | json }}</h1>
+7. Percent Pipe
+<h1>{{ 0.675 | percent: '1.1-1' }}</h1>
+8. Slice Pipe
+<h1>{{ postArray | slice: 0:3 }}</h1>
+# Custom Pipe 
+-Pipe CLI-----------------------------------------
+ng g pipe <folderName>/<pipeName> 
+--------------------------------------------------
+import { Pipe, PipeTransform } from '@angular/core';
+@Pipe({name: 'appendCLI'})
+export class AppendCLIPipe implements PipeTransform {
+  transform(value: unknown, ...args: unknown[]): unknown {
+    return "City Name CLI: " + value;}}
+<h1>{{ userdetails.city | appendCLI}}</h1>
+
+-Pipe with Args-----------------------------------
+import { Pipe, PipeTransform } from '@angular/core';
+@Pipe({ name: 'summary' })
+export class SummaryPipe implements PipeTransform {
+  transform(value: string, length?: number, message?: string): unknown {
+    return message +" : "+ value.substring(0, length);}}
+<h1>{{dummyText | summary: 10 : 'Msg Name' }}</h1>
+--------------------------------------------------
 

@@ -1,34 +1,31 @@
-<div class="form-area">
-    <h1>User Details</h1>
-    <input type="text" placeholder="Name" [(ngModel)]="name" />
-    <br><br>
-    <input type="eamil" placeholder="E-Mail" [(ngModel)]="email" />
-    <br><br>
-    <textarea cols="30" rows="10" type="text" placeholder="Address" [(ngModel)]="address"></textarea>
-    <br><br>
-    <button (click)="onClick()">SaveData</button>
-    <br><br>
-</div>
-<div *ngIf="userArray.length > 0; else noData">
-    <div class="table-area">
-        <table width="500">
-            <thead>
-                <th>#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Action</th>
-            </thead>
-            <tr *ngFor="let user of userArray; let index = index">
-                <td>{{index + 1}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.address}}</td>
-                <td><button (click)="onDelete(index)">Delete</button></td>
-            </tr>
-        </table>
-    </div>
-</div>
-<ng-template #noData>
-    <h4>No data to show</h4>
-</ng-template>
+<h1> App Component </h1>
+
+<P>1- uppercase & lowercase Pipe</P>
+<h1>{{title | uppercase}}</h1>
+<h1>{{title | lowercase}}</h1>
+
+<p>2- Number & Decimal Pipe</p>
+<h1>{{count | number}}</h1>
+<h1>{{dcValue | number: '1.2-2'}}</h1>
+
+<p>3- Currency Pipe</p>
+<h1>{{ price | currency:'JPY' : false : '2.1-1' }}</h1>
+
+<p>4- Date Pipe</p>
+<h1>{{ today | date: 'short'}}</h1>
+<h1>{{ today | date: 'shortDate'}}</h1>
+
+<p>5- JSON Pipe</p>
+<h1>{{ postObj | json }}</h1>
+
+<p>6- Percent Pipe</p>
+<h1>{{ 0.675 | percent: '1.1-1' }}</h1>
+
+<p>7- Slice Pipe</p>
+<h1>{{ postArray | slice: 0:3 }}</h1>
+
+<p>Custom Pipe</p>
+<h1>{{ userdetails.city | appendCLI}}</h1>
+
+<p>Custom Pipe with argumments</p>
+<h1>{{dummyText | summary: 10 : 'Msg Name' }}</h1>
