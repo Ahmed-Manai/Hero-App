@@ -1,31 +1,4 @@
 <h1> App Component </h1>
 
-<P>1- uppercase & lowercase Pipe</P>
-<h1>{{title | uppercase}}</h1>
-<h1>{{title | lowercase}}</h1>
-
-<p>2- Number & Decimal Pipe</p>
-<h1>{{count | number}}</h1>
-<h1>{{dcValue | number: '1.2-2'}}</h1>
-
-<p>3- Currency Pipe</p>
-<h1>{{ price | currency:'JPY' : false : '2.1-1' }}</h1>
-
-<p>4- Date Pipe</p>
-<h1>{{ today | date: 'short'}}</h1>
-<h1>{{ today | date: 'shortDate'}}</h1>
-
-<p>5- JSON Pipe</p>
-<h1>{{ postObj | json }}</h1>
-
-<p>6- Percent Pipe</p>
-<h1>{{ 0.675 | percent: '1.1-1' }}</h1>
-
-<p>7- Slice Pipe</p>
-<h1>{{ postArray | slice: 0:3 }}</h1>
-
-<p>Custom Pipe</p>
-<h1>{{ userdetails.city | appendCLI}}</h1>
-
-<p>Custom Pipe with argumments</p>
-<h1>{{dummyText | summary: 10 : 'Msg Name' }}</h1>
+<app-post></app-post> 
+<app-post-list></app-post-list>

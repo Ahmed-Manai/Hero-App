@@ -170,3 +170,27 @@ export class SummaryPipe implements PipeTransform {
 <h1>{{dummyText | summary: 10 : 'Msg Name' }}</h1>
 --------------------------------------------------
 
+# Angular Services 
+angular services, used to share data and common method among components (whether there is a relationship between components or not).
+
+Angular Service|____\ [Component-1]
+[Array Object ]|    / [Component-2]
+=> group common methods together in Angular Service.
+
+
+** Dependency Injection 
+constructor(private postService: PostService){
+    this.posts = postService.postList;}
+------------------------------------------------
+providers: [PostService],//Injectable Class
+OR 
+@Injectable({
+    providedIn: 'root'
+  })
+
+** Create a service using CLI
+ng g s <folderName>/<serviceName>
+
+# Angular Interface
+** Create a Interface using CLI
+ng g i <folderName>/<interfaceName>
