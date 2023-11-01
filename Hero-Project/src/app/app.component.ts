@@ -1,6 +1,6 @@
 import { TmplAstHoverDeferredTrigger } from '@angular/compiler';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, NgForm, NgModel, Validators } from '@angular/forms';
+import { FormGroup, FormControl, NgForm, NgModel, Validators, FormArray, Form } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -24,15 +24,27 @@ export class AppComponent {
       //  Validators.pattern(this.emailRegex)
       Validators.email
       ]),
-
       contactDetails: new FormGroup({
         address: new FormControl('', [Validators.required]),
         shippingAddress: new FormControl('', [Validators.required]),
         contactNum: new FormControl('', [Validators.required, Validators.pattern(this.contactRegex)])
-      })
+      }),
+      skills: new FormArray([])
     });
   }
 
+  removeSkill(i: number){
+this.Skills.removeAt(i); 
+  }
+  get Skills() {
+    return this.form.get('skills') as FormArray;
+  }
+
+  addSkill(skill: HTMLInputElement) {
+    (this.Skills).push(new FormControl(skill.value));
+    skill.value = '';
+    console.log(this.form.value);
+  }
   get ShippingAddress() {
     return this.form.get('contactDetails.shippingAddress');
   }

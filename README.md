@@ -241,7 +241,7 @@ Handle Forms Data :
 
 class Binding [class]
 ngClass Directive : [ngClass]
-Template #Name 
+Template variable #Name 
 
 type of From :
 
@@ -275,5 +275,8 @@ type of From :
     </div>
 
 
-     2- Reactive Form ==> Hand Code From scratch 
+     2- Reactive Form ==> Hand Code From scratch (ts file)
      ------------------------------------------------------------------
+
+
+     Angular Form Builder 
