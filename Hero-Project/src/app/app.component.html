@@ -1,5 +1,8 @@
 <div class="container mt-5">
     <div class="form-area">
+
+        <!-- Template Driven Form -->
+        <h2>Template Driven Form</h2>
         <form #fm='ngForm' (ngSubmit)="onSubmit(fm)"> <!--angular template variable # , directive  -->
             <div class="form-group">
                 <label> First Name </label>
@@ -50,6 +53,62 @@
 
 
             <button type="submit" class="btn btn-primary" [disabled]="fm.invalid">Submit </button>
+        </form>
+        <br>
+        <!-- Reactive Form -->
+        <h2>Reactive Form</h2>
+        <form [formGroup]="form" (ngSubmit)="onSubmitReactiveForm()"> <!-- angular Reactive Form Binding -->
+            <div class="form-group">
+                <label> First Name </label>
+                <input type="text" placeholder="Full Name" class="form-control" name="fullName"
+                    formControlName="fullName">
+                
+                    <div class="alert alert-danger" *ngIf="fullname.touched && fullname.invalid">
+                    <div *ngIf="fullname.errors && fullname.errors['required']">Full Name is required ... </div>
+                    <div *ngIf="fullname.errors && fullname.errors['minlength']">Full Name must be atleast 5 characters ... </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label> Email </label>
+                <input type="email" placeholder="Email" class="form-control" name="email" formControlName="email">
+                
+                <div class="alert alert-danger" *ngIf="Email.touched && Email.invalid">
+                    <div *ngIf="Email.errors && Email.errors['required']">Email is required ... </div>
+                    <div *ngIf="Email.errors && Email.errors['email']">Invalid Email ... </div>
+                </div>           
+            </div>
+<!-- contact Details for nested Form Group -->
+         <div formGroupName = 'contactDetails'>
+            <div class="form-group">
+                <label> Address </label>
+                <textarea cols="30" rows="10" placeholder="Address" class="form-control" name="address"
+                    formControlName="address"></textarea>
+                    <div class="alert alert-danger" *ngIf="Address.touched && Address.invalid">
+                        <div *ngIf="Address.errors && Address.errors['required']">Address is required ... </div>
+                    </div>   
+            </div>
+
+            <div class="form-group">
+                <label> Shipping Address </label>
+                <textarea cols="30" rows="10" placeholder="Shipping Address" class="form-control" name="address"
+                    formControlName="shippingAddress"></textarea>
+                    <div class="alert alert-danger" *ngIf="ShippingAddress.touched && ShippingAddress.invalid">
+                        <div *ngIf="ShippingAddress.errors && ShippingAddress.errors['required']">Shipping Address is required ... </div>
+                    </div>   
+            </div>
+
+            <div class="form-group">
+                <label> Contact Number </label>
+                <input type="text" placeholder="Contact Number" class="form-control" name="email" formControlName="contactNum">
+                
+                <div class="alert alert-danger" *ngIf="ContactNum.touched && ContactNum.invalid">
+                    <div *ngIf="ContactNum.errors && ContactNum.errors['required']">Contact Number is required ... </div>
+                    <div *ngIf="ContactNum.errors && ContactNum.errors['pattern']">Invalid Contact Number ... </div>
+                </div>           
+            </div>
+         </div>
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit </button>
         </form>
     </div>
 </div>
