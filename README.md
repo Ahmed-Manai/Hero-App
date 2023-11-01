@@ -194,3 +194,86 @@ ng g s <folderName>/<serviceName>
 # Angular Interface
 ** Create a Interface using CLI
 ng g i <folderName>/<interfaceName>
+
+
+********************************
+ # Forms 
+ 
+* download bootstrap (https://getbootstrap.com/docs/5.1/getting-started/download/)
+and copy  and past CDN via jsDelivr  
+ 
+
+* HTML Part
+**************************************************************
+<div class="container mt-5">
+    <div class="form-area">
+        <form #fm = 'ngForm' (submit) = "onSubmit(fm)"> <!--angular template variable # , directive  -->
+            <div class="form-group">
+                <label> First Name </label>
+                <input type="text" placeholder="Full Name" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit </button>
+        </form>
+    </div>
+</div>
+**************************************************************
+
+1- Template - Driven Form ==> By using Angular Directive (ngForm)
+------------------------------------------------------------------
+==> NgForm
+Handle Forms Data : 
+    1- formGroup Class: ==Used=With==> Frorm Tags
+    2- formControl Class: ==Apply==> Input Fields 
+ ________________
+| Form Group     |
+|________________|
+| Form Control 1 | => Class formControl{
+| .              |          value(); touched(); untouched(); dirty();
+| From Control N |          pristine(); valid(); errors();}
+|________________|          
+ ________________
+| Angular App    |
+|________________|
+| Form Group   1 |
+| .              |
+| From Group   N |
+|________________|
+
+class Binding [class]
+ngClass Directive : [ngClass]
+Template #Name 
+
+type of From :
+
+<input type="text" placeholder="Full Name" class="form-control" name="fullName" ngModel>
+
+
+
+ * Input Validation 
+    <div class="form-group">
+        <label> First Name </label>
+        <input type="text" placeholder="Full Name" class="form-control" name="fullName" ngModel
+            #fullName='ngModel' (change)="getValue(fullName)" required [ngClass]="{ 'is-invalid' : fullName.touched && fullName.invalid}">
+            <div class="alert alert-danger" *ngIf="fullName.touched && fullName.invalid">
+                Full Name is required ...
+            </div>
+    </div>
+
+* Type Validation 
+    <input type="text" placeholder="Full Name" class="form-control" name="fullName" ngModel
+        #fullName='ngModel' (change)="getValue(fullName)" required
+        [ngClass]="{ 'is-invalid' : fullName.touched && fullName.invalid}" minlength="5" maxlength="10">
+    <div *ngIf="fullName.errors && fullName.errors['required']">
+        <div class="alert alert-danger" *ngIf="fullName.touched && fullName.invalid">
+            Full Name is required ...
+        </div>
+    </div>
+    <div *ngIf="fullName.errors && fullName.errors['minlength']">
+        <div class="alert alert-danger" *ngIf="fullName.touched && fullName.invalid">
+            Full Name must be atleast 5 characters ...
+        </div>
+    </div>
+
+
+     2- Reactive Form ==> Hand Code From scratch 
+     ------------------------------------------------------------------
