@@ -11,6 +11,9 @@
                 <div class="alert alert-danger" *ngIf="fb.userName.touched && fb.userName.invalid">UserName must be
                     atleast 5 characters ...</div>
             </div>
+            <div *ngIf="fb.userName.errors?.nospaceValidator">
+                <div class="alert alert-danger" *ngIf="fb.userName.touched && fb.userName.invalid">UserName  cannot contain spaces ...</div>
+            </div>
         </div>
 
         <div class="form-group">

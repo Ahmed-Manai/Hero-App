@@ -280,3 +280,16 @@ type of From :
 
 
      Angular Form Builder 
+
+
+     ***************************************************
+     ***************************************************
+     ***************************************************
+     ***************************************************
+     # Angular Routing and Navigation
+     routing means navigation between pages
+     * Angular ROUTER : is a main building core module if Angualr. that help implement routing and navigation 
+     * Implementation step of the ROUTERS :
+     1- Configure the Routes
+     2- Add Router-Outlet
+     3- Add Navigation Link Paths
