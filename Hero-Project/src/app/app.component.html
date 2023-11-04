@@ -1,32 +1,11 @@
-<div class="container">
-    <form [formGroup]="form">
-        <div class="form-group">
-            <label>UserName</label>
-            <input type="text" class="form-control" formControlName="userName">
-            <div *ngIf="fb.userName.errors?.required">
-                <div class="alert alert-danger" *ngIf="fb.userName.touched && fb.userName.invalid">UserName is required
-                    ...</div>
-            </div>
-            <div *ngIf="fb.userName.errors?.minlength">
-                <div class="alert alert-danger" *ngIf="fb.userName.touched && fb.userName.invalid">UserName must be
-                    atleast 5 characters ...</div>
-            </div>
-            <div *ngIf="fb.userName.errors?.nospaceValidator">
-                <div class="alert alert-danger" *ngIf="fb.userName.touched && fb.userName.invalid">UserName  cannot contain spaces ...</div>
-            </div>
-        </div>
+<h1>Component blog</h1>
 
-        <div class="form-group">
-            <label>Password</label>
-            <input type="text" class="form-control" formControlName="password">
+<button routerLink="/" routerLinkActive="active">Home</button>
+<button routerLink="/posts" routerLinkActive="active" [queryParams]="{page:1, orderBy:'newest'}">Post List</button>
+<button (click)="onSubmit()">Submit</button>
 
-            <div *ngIf="fb.password.errors?.required">
-                <div class="alert alert-danger" *ngIf="fb.password.touched && fb.password.invalid">Password is required
-                    ...</div>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary"> Submit </button>
+<!-- 
+<a routerLink="/posts">Post List</a>
+<a href="/posts">Post List href</a> -->
 
-    </form>
-
-</div>
+<router-outlet></router-outlet>  

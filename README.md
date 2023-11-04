@@ -291,5 +291,153 @@ type of From :
      * Angular ROUTER : is a main building core module if Angualr. that help implement routing and navigation 
      * Implementation step of the ROUTERS :
      1- Configure the Routes
+            //app.module.ts file:
+            import { RouterModule } from '@angular/router';
+            //imports
+            RouterModule.forRoot([{
+            path: 'posts', component: PostListComponent
+            }])
      2- Add Router-Outlet
+            //app.component.html
+            <router-outlet></router-outlet>
      3- Add Navigation Link Paths
+            //router link directive 
+            <button routerLink="/posts">Post List</button>
+
+    * routerLink (directive) vs href
+    routerLink => load only the componet (without refreshing the page)
+    href => load entire page (refresh all the page)
+
+    * pass Data with Router
+        //app.module.ts
+        {path:'post/:id', component: SinglePostComponent}
+        //Sender.html
+        <button [routerLink]="['/post',  index]">View Content</button>
+        //receiver.ts
+        import { ActivatedRoute } from '@angular/router';
+        constructor(private route: ActivatedRoute){}
+        ngOnInit(){
+            this.route.paramMap.subscribe(value => {
+            let id = value.get('id');
+            console.log(id);
+            })
+
+    * multiple Router Parameters  
+    Note: the URL cannot have a spaces in it so we see the prefix %20 (represent the space)
+    //app.module.ts
+     {path:'post/:id/:title', component: SinglePostComponent}
+    //Sender.html
+    <button [routerLink]="['/post',  index, post.title ]">View Content</button>
+    //Receivere.ts
+    this.route.paramMap.subscribe(value => {
+      let id = value.get('id');
+      const title = value.get('title');
+      console.log(id); 
+      console.log(title);
+    });
+
+    * Query Parameters: 
+    Note Query Parameteres is after ? and seperate each parameter with &
+    //Sender.html
+    <button routerLink="/posts" routerLinkActive="active" [queryParams]="{page:1, orderBy:'newest'}">Post List</button>
+    //Receiver.ts
+    constructor(private route: ActivatedRoute){}
+    ngOnInit() {
+    this.route.queryParamMap.subscribe(value =>{
+      const page = value.get('page');
+      const order = value.get('orderBy');  
+      console.log(page);
+      console.log(order);
+    });
+  } 
+
+
+    * Seperate File for Angaulr Routing and register the module inside the default module (app = app.module.ts) (flat will create the file in the root folder without creating a sub-folder)
+    ng g module app-routing --module app --flat 
+
+    const routes: Routes = [
+    {path:'', component: HomeComponent },
+    { path: 'posts', component: PostListComponent },
+    {path:'post/:id/:title', component: SinglePostComponent}
+    ];
+
+    @NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+    })
+    export class AppRoutingModule { }
+
+    * Navigate Programmatically (route from the ts file)
+    //Sender html file 
+    <button (click)="onSubmit()">Submit</button>
+    // Sender ts file
+    constructor(private router: Router){}
+    onSubmit(){
+    this.router.navigate(['/posts']); //  like routerLink
+    //to pass router parameters use this 
+    //this.router.navigate(['/post', 1, 'postTitle']);
+    //to pass query parameters use this 
+    this.router.navigate(['/posts'],{queryParams: {page: 1, order: 'newest'}});
+  }
+
+
+    * WILD CARD Routers (page not found page):
+    ng g c fournotfour
+    //add to the routes, make sure to added at the end (bottom) list of the routes
+    {path:'**', component: FournotfourComponent}
+
+
+    * Observable(Reactive Programming: rxjs)
+    * rxjs : library for composing asynchronous and event based programs by using observable sequences. it provides one core type, 
+    the Observable, satellite types (observer, scheduler, subjects) and operator inspired by Array#extras(map, filter, reduce, every, etc) to allow handling asynchonous events as collections
+    * => obervable: is a sequence of data that is emitted data asynchonously or synchronously over a time of period
+    => an observable will continuously observe a set of stream data and automatically update or track that sequence of data whenever there is something changed.
+
+    //create observale and subscribe to it 
+    const obsTest$ = new Observable(observer => {
+      //console.log('printed from observable');
+      observer.next('Returned From Oserverable')
+    }).subscribe(value => {
+      console.log(value);
+    }); 
+
+    //create a java script fuction and call it 
+    const obsTest = function(){
+        //console.log("Printed from Function");
+        return 'Return From Function';
+    }
+    const returnData = obsTest();
+    console.log(returnData);
+
+    //limitation of js function => abservable we can have multiple returns 
+        const obsTest = function(){
+        return 'Return 1 From Function'; //stop in the first return 
+        return 'Return 2 From Function';
+    }
+    //abservable we can have multiple returns (using next)
+    const obsTest$ = new Observable(observer => { 
+      observer.next('Returned 1 From Oserverable');
+      observer.next('Returned 2 From Oserverable');
+      observer.next('Returned 3 From Oserverable');
+    }).subscribe(value => {
+      console.log(value);
+    }); 
+
+    * Synchrouns vs Asynchronous Programming
+    1- Synchrouns code is executed in sequence - each statement waits for the previous statement to finish before excuting...
+    2- Asynchrouns code doesn't have to wait to execute the previous code completely this can can continue to run.
+    3- Mostly javascript works as asynchronously.
+    
+    // Async exec for Observable
+    const obsTest$ = new Observable(observer => {
+      observer.next('Returned 1 From Oserverable');
+      setTimeout(()=>{
+        observer.next('Returned 2 From Oserverable');
+      }, 2000);
+      observer.next('Returned 3 From Oserverable');
+    }).subscribe(value => {
+      console.log(value);
+    }); 
+
+    //Subscribe and UnSubscribe Methods
+    obsTest$.unsubscribe();
