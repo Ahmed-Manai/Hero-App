@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { PostComponent } from './post/post.component';
 
 @Component({
@@ -15,13 +15,16 @@ export class AppComponent implements AfterViewInit{
   messageFromChild!:string;
   messageFromChildOutput!:string;
  
-  constructor(){
+  constructor(private cdr: ChangeDetectorRef){
     console.log(this.childComp);
   }
 
   ngAfterViewInit(){
     console.log(this.childComp);
     this.messageFromChild =this.childComp.childMessage;
+    // The value is read after the view was checked, so run change detection again
+    // to avoid ExpressionChangedAfterItHasBeenCheckedError (NG0100).
+    this.cdr.detectChanges();
   }
 
   receiveMessage($event: string){

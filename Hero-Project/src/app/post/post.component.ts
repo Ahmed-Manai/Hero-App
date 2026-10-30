@@ -21,8 +21,6 @@ export class PostComponent implements OnInit {
 
   @Input() fromParent!:string;
 
-  consturctor(){}
-
   ngOnInit(): void {
     
   }
